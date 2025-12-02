@@ -1,3 +1,6 @@
+import tkinter
+import tkinter.font
+
 class Layout:
     def __init__(self, tokens):
         self.tokens = tokens

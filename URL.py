@@ -4,7 +4,6 @@ import ssl
 class URL:
     def __init__(self, url):
         try:
-
             self.scheme, url = url.split("://", 1)
             assert self.scheme in ["http", "https", "file"]
 
