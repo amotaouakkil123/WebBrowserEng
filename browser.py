@@ -2,6 +2,9 @@ import socket
 import ssl
 import tkinter
 import tkinter.font
+from layout import Text
+from layout import Tag
+from layout import Layout
 
 
 VSTEP, HSTEP = 13, 18
@@ -57,22 +60,6 @@ class Browser:
     def scrollUpMouse(self, e):
         self.scroll -= e.y
         self.draw()
-
-
-
-FONTS = {}
-
-def get_font(size, weight, style):
-    key = (size, weight, style)
-    if key not in FONTS:
-        font = tkinter.font.Font(size=size, 
-                                 weight=weight,
-                                 slant=style)
-        label = tkinter.Label(font=font)
-        FONTS[key] = label
-    return FONTS[key][0]
-
-
 
 def lex(body):
     out = []

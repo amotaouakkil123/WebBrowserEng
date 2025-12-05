@@ -1,6 +1,22 @@
 import tkinter
 import tkinter.font
 
+VSTEP, HSTEP = 13, 18
+WIDTH, HEIGHT = 800, 600
+
+FONTS = {}
+def get_font(size, weight, style):
+    key = (size, weight, style)
+    if key not in FONTS:
+        font = tkinter.font.Font(size=size,
+                                 weight=weight,
+                                 slant=style
+                                 )
+        label = tkinter.Label(font=font)
+        FONTS[key] = (font, label)
+    print(FONTS[key])
+    return FONTS[key][0]
+
 class Layout:
     def __init__(self, tokens):
         self.tokens = tokens
@@ -48,14 +64,14 @@ class Layout:
             self.cursor_y += VSTEP
 
     def word(self, word):
-
+        print("Size: " + str(self.size) + " Weight: " + str(self.weight) + " Style: " + str(self.style))
         font = get_font(self.size, self.weight, self.style)
         w = font.measure(word)
 
         if self.cursor_x + w > WIDTH - HSTEP:
             self.flush()
 
-        self.display_list.append((self.cursor_x, word, font))
+        self.line.append((self.cursor_x, word, font))
         self.cursor_x += w + font.measure(" ")
 
     def flush(self):
